@@ -295,6 +295,86 @@ button {
   cursor: pointer;
 }
 
+.burn-in {
+  width: min(760px, 100%);
+  margin: 18px auto 0;
+  padding: 14px;
+  color: #00ff00;
+  background: #000;
+  border: 5px ridge #ff0000;
+  box-shadow: inset 0 0 0 3px #ffff00;
+}
+
+.burn-in.is-burning {
+  animation: sacred-alert .18s steps(2, end) infinite;
+}
+
+.burn-in h3 {
+  color: #ffff00;
+  text-transform: uppercase;
+}
+
+.burn-warning {
+  color: #ff9999;
+  font-weight: bold;
+}
+
+.meter-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.meter-board div {
+  padding: 8px;
+  background: #111;
+  border: 3px inset #777;
+}
+
+.meter-board span,
+.meter-board strong {
+  display: block;
+}
+
+.meter-board span {
+  color: #00ffff;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.meter-board strong {
+  color: #ffff00;
+  font-family: "Courier New", monospace;
+  font-size: 24px;
+}
+
+#burn-log {
+  min-height: 96px;
+  margin: 10px 0 14px;
+  padding: 10px;
+  overflow: hidden;
+  color: #00ff00;
+  font-family: "Courier New", monospace;
+  font-size: 15px;
+  text-align: left;
+  white-space: pre-wrap;
+  background: #050505;
+  border: 3px inset #777;
+}
+
+@keyframes sacred-alert {
+  0% {
+    filter: saturate(1);
+    transform: translateX(0);
+  }
+
+  100% {
+    filter: saturate(2.2) hue-rotate(28deg);
+    transform: translateX(1px);
+  }
+}
+
 .testimonial-grid {
   grid-template-columns: repeat(3, 1fr);
   background: #fff;
@@ -531,6 +611,7 @@ summary {
   .ritual-grid,
   .testimonial-grid,
   .offering-grid,
+  .meter-board,
   .parallel-tracks,
   .enhanced-layout {
     grid-template-columns: 1fr;
@@ -555,5 +636,9 @@ summary {
 
   #progress-bar {
     transition: none;
+  }
+
+  .burn-in.is-burning {
+    animation: none;
   }
 }
