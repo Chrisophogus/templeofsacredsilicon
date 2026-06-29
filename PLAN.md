@@ -12,6 +12,7 @@ Create a small joke website that offers spiritual cleansing for a user's laptop,
 - **Small amount of JavaScript:** Adds an interactive cleansing ritual and visitor counter effect without introducing dependencies.
 - **Deliberately bad visual taste, tidy structure:** The look should feel amateur and hokey, but the underlying files should remain straightforward to maintain.
 - **Satirical "enhanced service" copy only:** The new questionable add-on should read as obviously sinister and absurd, but remain completely inert. There will be no download, no purchase link, no form, and no real collection of private data.
+- **Animated favicon with fallback:** Use a tiny animated GIF for browsers that support it, while keeping the PNG favicon linked as a safe fallback because animated favicon support varies.
 
 ## Implementation
 
