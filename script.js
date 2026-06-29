@@ -26,8 +26,16 @@ const burnMessages = [
   "Measuring morally suspicious heat signatures...",
   "Pouring ceremonial glitter into virtual RAM...",
   "Opening 47 sacred progress bars in the astral plane...",
-  "Cooling laptop with ethically sourced moonlight..."
+  "Cooling laptop with ethically sourced moonlight...",
+  "Re-indexing battery karma...",
+  "Negotiating with the fan's ancestral spirits...",
+  "Defragmenting shame from the downloads folder...",
+  "Polishing the HDMI aura...",
+  "Compressing regret into a blessed temporary file..."
 ];
+
+const burnInTicks = 36;
+const burnInDelay = 340;
 
 let audioContext;
 let scrollClickCount = 0;
@@ -116,11 +124,13 @@ function runBurnIn() {
     fanReading.textContent = fanStates[tick % fanStates.length];
     logLines = [...logLines.slice(-4), `> ${message}`];
     burnLog.textContent = logLines.join("\n");
-    playBlessedBleep(tick);
+    if (tick % 2 === 0) {
+      playBlessedBleep(tick);
+    }
 
     tick += 1;
 
-    if (tick > 14) {
+    if (tick >= burnInTicks) {
       window.clearInterval(burnInterval);
       burnPanel.classList.remove("is-burning");
       cpuReading.textContent = "0%";
@@ -129,7 +139,7 @@ function runBurnIn() {
       burnLog.textContent = `${logLines.join("\n")}\n> Burn-in complete. No actual resources were harmed.`;
       burnButton.disabled = false;
     }
-  }, 240);
+  }, burnInDelay);
 }
 
 function enableInfernalMode() {
