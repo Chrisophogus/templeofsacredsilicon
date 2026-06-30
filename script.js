@@ -8,9 +8,14 @@ const messages = [
 ];
 
 const button = document.querySelector("#cleanse-button");
+const loadingScreen = document.querySelector(".loading-screen");
 const statusText = document.querySelector("#ritual-status");
 const progressBar = document.querySelector("#progress-bar");
 const counter = document.querySelector("#visitor-counter");
+const certificate = document.querySelector("#certificate");
+const certificateDate = document.querySelector("#certificate-date");
+const certificateVisitor = document.querySelector("#certificate-visitor");
+const printCertificate = document.querySelector("#print-certificate");
 const burnButton = document.querySelector("#burn-button");
 const burnLog = document.querySelector("#burn-log");
 const burnPanel = document.querySelector(".burn-in");
@@ -22,9 +27,14 @@ const loopNotice = document.querySelector(".loop-notice");
 const favicon = document.querySelector("#favicon");
 const infernalModal = document.querySelector(".infernal-modal");
 const infernalModalClose = document.querySelector("#infernal-modal-close");
+const guestbookModal = document.querySelector(".guestbook-modal");
+const guestbookLink = document.querySelector("#guestbook-link");
+const guestbookClose = document.querySelector("#guestbook-close");
+const curseToast = document.querySelector(".curse-toast");
 const corruptedTextElements = document.querySelectorAll("[data-infernal-text]");
 const cleansyPop = document.querySelector(".cleansy-pop");
 const cleansyCaption = document.querySelector("#cleansy-caption");
+const chaosOfferings = document.querySelectorAll("[data-chaos]");
 
 const burnMessages = [
   "Allocating imaginary incense cache...",
@@ -60,6 +70,7 @@ let lastScrollTime = 0;
 let loopMode = false;
 let infernalMode = false;
 let lastSparkTime = 0;
+let visitorNumber = "000000";
 
 const konamiCode = [
   "ArrowUp",
@@ -78,8 +89,24 @@ let konamiIndex = 0;
 function setVisitorCounter() {
   const baseNumber = 4726;
   const daySeed = Math.floor(Date.now() / 86400000);
-  const visitNumber = String(baseNumber + daySeed).padStart(6, "0");
-  counter.textContent = visitNumber;
+  visitorNumber = String(baseNumber + daySeed).padStart(6, "0");
+  counter.textContent = visitorNumber;
+}
+
+function hideLoadingScreen() {
+  window.setTimeout(() => {
+    loadingScreen.classList.add("is-hidden");
+  }, 700);
+}
+
+function revealCertificate() {
+  certificate.hidden = false;
+  certificateDate.textContent = new Date().toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  });
+  certificateVisitor.textContent = counter.textContent;
 }
 
 function runCleansing() {
@@ -99,6 +126,7 @@ function runCleansing() {
     statusText.textContent = infernalMode
       ? "Uncleaning complete. Your laptop is now humming in questionable warmth."
       : "Cleansing complete. Your laptop is now vibrating at 56k enlightenment.";
+    revealCertificate();
     button.disabled = false;
   }, activeMessages.length * 850 + 250);
 }
@@ -161,6 +189,28 @@ function hideInfernalModal() {
   infernalModal.setAttribute("aria-hidden", "true");
 }
 
+function showGuestbook() {
+  guestbookModal.classList.add("is-visible");
+  guestbookModal.setAttribute("aria-hidden", "false");
+}
+
+function hideGuestbook() {
+  guestbookModal.classList.remove("is-visible");
+  guestbookModal.setAttribute("aria-hidden", "true");
+}
+
+function showCurseToast() {
+  curseToast.classList.remove("is-visible");
+  curseToast.setAttribute("aria-hidden", "false");
+  void curseToast.offsetWidth;
+  curseToast.classList.add("is-visible");
+
+  window.setTimeout(() => {
+    curseToast.classList.remove("is-visible");
+    curseToast.setAttribute("aria-hidden", "true");
+  }, 1500);
+}
+
 function showCleansyPop() {
   cleansyCaption.textContent = infernalMode ? "ROASTY!" : "CLEANSY!";
   cleansyPop.classList.remove("is-visible");
@@ -221,6 +271,12 @@ function enableInfernalMode() {
   burnLog.textContent = "INFERNAL SILICON MODE UNSEALED\n> Please cleanse responsibly.";
   showInfernalModal();
   playInfernalSting();
+}
+
+function activateBasementHash() {
+  if (window.location.hash === "#basement") {
+    enableInfernalMode();
+  }
 }
 
 function createCursorSpark(event) {
@@ -294,19 +350,44 @@ function handleDocumentClick() {
 }
 
 setVisitorCounter();
+hideLoadingScreen();
+activateBasementHash();
 button.addEventListener("click", runCleansing);
+printCertificate.addEventListener("click", () => window.print());
 burnButton.addEventListener("click", runBurnIn);
 loopEscape.addEventListener("click", disableLoopMode);
 infernalModalClose.addEventListener("click", hideInfernalModal);
+guestbookLink.addEventListener("click", (event) => {
+  event.preventDefault();
+  showGuestbook();
+});
+guestbookClose.addEventListener("click", hideGuestbook);
+chaosOfferings.forEach((offering) => {
+  const description = offering.querySelector("p:last-child");
+  const originalText = description.textContent;
+
+  offering.addEventListener("mouseenter", () => {
+    description.textContent = offering.dataset.chaos;
+  });
+  offering.addEventListener("mouseleave", () => {
+    description.textContent = originalText;
+  });
+});
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     disableLoopMode();
     hideInfernalModal();
+    hideGuestbook();
     return;
   }
 
   handleKonami(event);
 });
 window.addEventListener("scroll", handleScroll, { passive: true });
+window.addEventListener("hashchange", activateBasementHash);
 window.addEventListener("pointermove", createCursorSpark, { passive: true });
+document.addEventListener("contextmenu", (event) => {
+  event.preventDefault();
+  showCurseToast();
+});
 document.addEventListener("click", handleDocumentClick);

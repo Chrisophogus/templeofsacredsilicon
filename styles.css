@@ -42,6 +42,62 @@ body.infernal-mode * {
   cursor: crosshair;
 }
 
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  color: #ffff00;
+  text-align: center;
+  background: #000066;
+}
+
+.loading-screen.is-hidden {
+  display: none;
+}
+
+.loading-screen strong,
+.loading-screen span {
+  display: block;
+}
+
+.loading-bar {
+  width: min(360px, 82vw);
+  height: 24px;
+  margin-top: 12px;
+  padding: 3px;
+  background: #000;
+  border: 4px inset #999;
+}
+
+.loading-bar span {
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(90deg, #ff0000 0 18px, #ffff00 18px 36px, #00ff00 36px 54px);
+  animation: incense-load .62s steps(8, end) forwards;
+}
+
+.curse-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  z-index: 8;
+  padding: 10px 14px;
+  color: #ffff00;
+  font-weight: bold;
+  text-align: center;
+  background: #000;
+  border: 4px ridge #ff00ff;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.curse-toast.is-visible {
+  animation: curse-toast 1.45s steps(3, end) forwards;
+}
+
 a {
   color: #0000ee;
   font-weight: bold;
@@ -108,7 +164,8 @@ body.infernal-mode .infernal-flames {
   visibility: hidden;
 }
 
-.infernal-modal {
+.infernal-modal,
+.guestbook-modal {
   position: fixed;
   inset: 0;
   z-index: 6;
@@ -121,13 +178,15 @@ body.infernal-mode .infernal-flames {
   visibility: hidden;
 }
 
-.infernal-modal.is-visible {
+.infernal-modal.is-visible,
+.guestbook-modal.is-visible {
   opacity: 1;
   pointer-events: auto;
   visibility: visible;
 }
 
-.infernal-modal-box {
+.infernal-modal-box,
+.guestbook-box {
   width: min(520px, 100%);
   padding: 20px;
   text-align: center;
@@ -137,8 +196,26 @@ body.infernal-mode .infernal-flames {
   box-shadow: 10px 10px 0 #000, 0 0 28px #ff0000;
 }
 
-.infernal-modal h2 {
+.infernal-modal h2,
+.guestbook-modal h2 {
   color: #ff3300;
+}
+
+.guestbook-box {
+  color: #000;
+  background: #fffdf0;
+  border-color: #0000ff;
+}
+
+.guestbook-box ol {
+  margin: 14px 0;
+  padding-left: 24px;
+  text-align: left;
+}
+
+.guestbook-note {
+  color: #660099;
+  font-weight: bold;
 }
 
 .cleansy-pop {
@@ -525,6 +602,34 @@ h3 {
   border: 4px ridge #f4d44a;
 }
 
+.certificate {
+  width: min(720px, 100%);
+  margin: 18px auto 0;
+  padding: 18px;
+  background: #fff;
+  border: 8px double #0000aa;
+}
+
+.certificate h3 {
+  color: #660099;
+  font-size: 28px;
+  text-transform: uppercase;
+}
+
+.certificate-seal {
+  display: grid;
+  place-items: center;
+  width: 92px;
+  aspect-ratio: 1;
+  margin: 12px auto;
+  color: #ffff00;
+  font-family: Impact, "Arial Black", sans-serif;
+  font-size: 24px;
+  background: #0000aa;
+  border: 5px ridge #ffcc00;
+  border-radius: 50%;
+}
+
 #ritual-status {
   min-height: 48px;
   margin: 8px 0;
@@ -649,6 +754,32 @@ body.infernal-mode .burn-in h3::after {
   background: #fff;
 }
 
+.diagnostics table {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  border-collapse: collapse;
+  background: #fff;
+  border: 4px ridge #999;
+}
+
+.diagnostics th,
+.diagnostics td {
+  padding: 9px;
+  border: 2px inset #ccc;
+}
+
+.diagnostics th {
+  width: 48%;
+  color: #000080;
+  text-align: right;
+}
+
+.diagnostics td {
+  color: #990000;
+  font-weight: bold;
+  text-align: left;
+}
+
 blockquote strong {
   display: block;
   margin-bottom: 8px;
@@ -680,6 +811,44 @@ blockquote strong {
   color: #0000cc;
   font-size: 32px;
   font-weight: bold;
+}
+
+.old-web-extras {
+  background: #ffffcc;
+}
+
+.badge-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.badge-board span {
+  display: grid;
+  place-items: center;
+  min-height: 54px;
+  padding: 7px;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  background: linear-gradient(#ff0000, #0000aa);
+  border: 4px outset #c0c0c0;
+  text-transform: uppercase;
+}
+
+.webring {
+  width: min(620px, 100%);
+  margin: 0 auto;
+  padding: 12px;
+  background: #fff;
+  border: 4px ridge #00aa00;
+}
+
+.webring a {
+  display: inline-block;
+  margin: 4px 8px;
 }
 
 .enhanced-service {
@@ -838,6 +1007,12 @@ summary {
   font-weight: bold;
 }
 
+.secret-link {
+  grid-column: 1 / -1;
+  font-size: 11px;
+  opacity: .24;
+}
+
 body.infernal-mode .infernal-footer-warning {
   display: block;
 }
@@ -905,6 +1080,28 @@ body.loop-mode .site-footer::after {
   }
 }
 
+@keyframes incense-load {
+  from {
+    width: 8%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes curse-toast {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  15%,
+  85% {
+    opacity: 1;
+  }
+}
+
 .counter {
   display: inline-block;
   margin: 0 4px;
@@ -955,6 +1152,7 @@ body.loop-mode .site-footer::after {
   .ritual-grid,
   .testimonial-grid,
   .offering-grid,
+  .badge-board,
   .meter-board,
   .parallel-tracks,
   .enhanced-layout {
@@ -990,5 +1188,38 @@ body.loop-mode .site-footer::after {
     animation: none;
     bottom: 0;
     opacity: .5;
+  }
+
+  .cleansy-pop.is-visible,
+  .curse-toast.is-visible,
+  .loading-bar span {
+    animation: none;
+  }
+}
+
+@media print {
+  body > *:not(.page-shell),
+  .site-header,
+  .announcement,
+  .intro,
+  .ritual-grid,
+  .live-ritual,
+  .burn-in,
+  .testimonials,
+  .offerings,
+  .enhanced-service,
+  .faq,
+  .site-footer {
+    display: none !important;
+  }
+
+  .page-shell {
+    width: 100%;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .certificate {
+    display: block !important;
   }
 }

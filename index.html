@@ -9,8 +9,16 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <div class="loading-screen" aria-live="polite">
+      <div>
+        <strong>Loading sacred incense...</strong>
+        <span>Consulting the motherboard's star chart</span>
+        <div class="loading-bar"><span></span></div>
+      </div>
+    </div>
     <div class="star-field" aria-hidden="true"></div>
     <div class="infernal-flames" aria-hidden="true"></div>
+    <div class="curse-toast" aria-live="polite" aria-hidden="true">Please do not disturb the laptop's aura.</div>
     <aside class="infernal-notice" aria-live="polite">
       <strong>Infernal Silicon Mode Unsealed</strong>
       <span>The laptop's lower chakras are now running unsanctioned midnight firmware.</span>
@@ -25,6 +33,19 @@
         <h2 id="infernal-modal-title">Archangel Michael Has Left The Chat</h2>
         <p>Your laptop has requested a private consultation with the Basement of Unsanctioned Silicon.</p>
         <button id="infernal-modal-close" type="button">OK, Continue Questionably</button>
+      </div>
+    </div>
+    <div class="guestbook-modal" role="dialog" aria-modal="true" aria-labelledby="guestbook-title" aria-hidden="true">
+      <div class="guestbook-box">
+        <h2 id="guestbook-title">Sacred Guestbook</h2>
+        <p class="guestbook-note">Please enjoy these blessed comments from previous seekers.</p>
+        <ol>
+          <li><strong>xX_AstralDave_Xx:</strong> my mouse mat feels lighter already!!!!!</li>
+          <li><strong>Moon modem mama:</strong> excellent vibe, 5 stars, cursor stopped judging me</li>
+          <li><strong>CPU_Priest_2003:</strong> signed from Internet Explorer at the library</li>
+          <li><strong>Anonymous:</strong> I came here by mistake and now my laptop smells like candles</li>
+        </ol>
+        <button id="guestbook-close" type="button">Close Guestbook</button>
       </div>
     </div>
     <div class="cleansy-pop" aria-live="polite" aria-hidden="true">
@@ -118,6 +139,14 @@
           <button id="cleanse-button" type="button" data-infernal-text="Uncleanse My Laptop's Spirit">Cleanse My Laptop's Spirit</button>
         </div>
 
+        <div id="certificate" class="certificate" aria-live="polite" hidden>
+          <h3>Certificate of Digital Purity</h3>
+          <p>This laptop has been spiritually cleansed by The Temple of Sacred Silicon.</p>
+          <p>Certified on <strong id="certificate-date">today</strong> for visitor <strong id="certificate-visitor">000000</strong>.</p>
+          <div class="certificate-seal">PURE</div>
+          <button id="print-certificate" type="button">Print This Certificate</button>
+        </div>
+
         <div class="burn-in">
           <h3>Optional High Intensity Chakra Burn-In</h3>
           <p class="burn-warning">For devices requiring extreme purification, this harmless simulation may appear to consume an inadvisable amount of spiritual RAM and may emit blessed diagnostic bleeps.</p>
@@ -158,28 +187,56 @@
         </div>
       </section>
 
+      <section class="panel diagnostics">
+        <h2>* Sacred System Scan Results *</h2>
+        <table>
+          <tbody>
+            <tr>
+              <th scope="row">USB Port Envy</th>
+              <td>Detected</td>
+            </tr>
+            <tr>
+              <th scope="row">RAM Shame</th>
+              <td>Moderate</td>
+            </tr>
+            <tr>
+              <th scope="row">Desktop Resentment</th>
+              <td>Elevated</td>
+            </tr>
+            <tr>
+              <th scope="row">Battery Karma</th>
+              <td>Needs chanting</td>
+            </tr>
+            <tr>
+              <th scope="row">Downloads Folder Aura</th>
+              <td>Cloudy but brave</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
       <section id="offerings" class="panel offerings">
         <h2>Yin Sacred Offerings Yang</h2>
         <div class="offering-grid">
-          <article>
+          <article data-chaos="Now includes gentle removal of toolbar grief and one polite apology to your trackpad.">
             <h3>Basic Cleanse</h3>
             <div class="gem blue">#</div>
             <p class="price">$25</p>
             <p>Perfect for light negativity and general sluggishness.</p>
           </article>
-          <article>
+          <article data-chaos="Recommended for laptops that have seen three or more recipe blogs in one sitting.">
             <h3>Deep Cleanse</h3>
             <div class="gem green">#</div>
             <p class="price">$50</p>
             <p>Includes chakra alignment and energy extraction.</p>
           </article>
-          <article>
+          <article data-chaos="Includes ceremonial deletion of vibes left behind by expired printer drivers.">
             <h3>Full Purification</h3>
             <div class="gem red">#</div>
             <p class="price">$75</p>
             <p>Complete cleanse, protection, and Light Code infusion.</p>
           </article>
-          <article>
+          <article data-chaos="For laptops that open one eye when the room is dark. No refunds after midnight.">
             <h3>Karmic Overhaul</h3>
             <div class="gem purple">#</div>
             <p class="price">$111</p>
@@ -216,6 +273,26 @@
         </div>
       </section>
 
+      <section class="panel old-web-extras">
+        <h2>* Compatibility, Awards, And Webring *</h2>
+        <div class="badge-board">
+          <span>Best viewed in Netscape Navigator</span>
+          <span>Works on Windows 98</span>
+          <span>Certified Y2K Adjacent</span>
+          <span>No AI Used Except The Spirit One</span>
+          <span>Won the 2003 Golden Pentium Award</span>
+          <span>AngelFire Site of the Week</span>
+          <span>Blessed by 4 out of 5 Archangels</span>
+        </div>
+        <div class="webring">
+          <h3>Digital Purity Webring</h3>
+          <a href="#faq">Previous</a>
+          <a href="#home">Random</a>
+          <a href="#guestbook">Next</a>
+          <p>Member site 0047 of 0199. Ringmaster last seen May 2003.</p>
+        </div>
+      </section>
+
       <section id="faq" class="panel faq">
         <h2>Frequently Asked Questions</h2>
         <details open>
@@ -234,7 +311,7 @@
 
       <footer id="guestbook" class="site-footer">
         <div>
-          <a href="#guestbook">Please sign my Guestbook!</a>
+          <a id="guestbook-link" href="#guestbook">Please sign my Guestbook!</a>
         </div>
         <div>
           You are visitor number:
@@ -244,6 +321,7 @@
         </div>
         <div class="browser-badge">BEST VIEWED WITH<br><strong>BRAVE BROWSER</strong><br>800x600 or higher</div>
         <div class="infernal-footer-warning">Your guestbook entry has been forwarded downstairs.</div>
+        <a class="secret-link" href="secrets/">archival map</a>
       </footer>
     </main>
 
