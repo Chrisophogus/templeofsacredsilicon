@@ -24,6 +24,7 @@ Create a small joke website that offers spiritual cleansing for a user's laptop,
 - **Netlify contact form with client-side redaction:** Use plain Netlify Forms for the real email path because it stays free-hostable and requires no backend. Let visitors type into suspicious joke fields, but do not give those fields `name` attributes; before submit, JavaScript only sends redacted status fields so sensitive values are not transmitted.
 - **Theatrical unoptimisation:** Add fake slow-web diagnostics, fake preload manifests, a fake Lighthouse score, and compatibility nonsense without actually bloating the site or harming visitors. The only real slowdown is the loading screen remaining visible for one extra second.
 - **Hidden ASCII reliquary:** Hide a deliberately enormous ASCII drawing inside `index.html` as a comment. This bloats the source for the joke, but keeps rendering unchanged, requires no runtime work, and remains easy to delete if the bit ever stops being funny.
+- **Secrets page as static index:** Keep `/secrets/` as a simple hand-maintained static map rather than generating it from code. That is less clever, but easiest to host and maintain for a tiny joke site.
 
 ## Implementation
 
@@ -42,3 +43,4 @@ Create a small joke website that offers spiritual cleansing for a user's laptop,
 13. Add first-site Apple Mac/Eden detection and a Netlify "Karmic Pre-Screening" contact form. Submit only ordinary contact fields plus redaction notices for risky joke answers, with a static thank-you page.
 14. Add a "Sacred Unoptimisation Pledge" section to the first site, plus a longer loading screen with fake legacy loading steps, fake cache-busting copy, a nested-table slow-web badge, and fake performance warnings.
 15. Add an oversized hidden ASCII mural to `index.html` so at least half of the document source is a ludicrous non-rendered drawing.
+16. Update `/secrets/` whenever new public, hidden, or semi-hidden jokes are added so the archival map remains comprehensive.
