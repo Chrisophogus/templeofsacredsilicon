@@ -15,7 +15,7 @@ Create a small joke website that offers spiritual cleansing for a user's laptop,
 - **Animated favicon with fallback:** Use a tiny animated GIF for browsers that support it, while keeping the PNG favicon linked as a safe fallback because animated favicon support varies.
 - **Fake resource abuse, not real resource abuse:** The joke can claim to consume enormous RAM/CPU, but the implementation must stay harmless, opt-in, and time-limited. Use fake counters, light DOM updates, and short user-triggered bleeps instead of loops, memory allocation, mining-like behaviour, or anything that would degrade a visitor's device.
 - **Longer fake burn-in, same light footprint:** The Chakra Burn-In should feel ceremonially excessive, but the extra duration should come from slower, capped UI updates rather than more work.
-- **Recoverable easter eggs:** Hidden modes can make the site feel cursed, but they should be reversible. Konami mode can restyle the page with an infernal joke layer; the scroll-loop trick can trap the user in a playful loop but must show an escape button and support `Escape`.
+- **Recoverable easter eggs:** Hidden modes can make the site feel cursed, but they should be reversible. Konami mode can restyle the page with an infernal joke layer, corrupted copy, a modal, cursor sparks, and a temporary favicon swap; the scroll-loop trick can trap the user in a playful loop but must show an escape button and support `Escape`.
 
 ## Implementation
 
@@ -25,4 +25,4 @@ Create a small joke website that offers spiritual cleansing for a user's laptop,
 4. Keep the generated concept in `docs/concept.png` and use `assets/sacred-laptop.png` as the page's main visual asset.
 5. Add the desktop-computer surcharge joke and a fake enhanced service panel that implies suspicious behaviour without implementing any of it.
 6. Add a fake "High Intensity Chakra Burn-In" that simulates ludicrous CPU/RAM usage with safe capped animation.
-7. Add two easter eggs: Konami code unlocks an infernal alternative skin, and five clicks while scrolling starts a reversible cursed scroll loop.
+7. Add two easter eggs: Konami code unlocks an infernal alternative skin with corrupted copy and ritual behaviour, and five clicks while scrolling starts a reversible cursed scroll loop.

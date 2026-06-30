@@ -37,6 +37,11 @@ body.infernal-mode {
   background-size: 82px 82px, 82px 82px, auto;
 }
 
+body.infernal-mode,
+body.infernal-mode * {
+  cursor: crosshair;
+}
+
 a {
   color: #0000ee;
   font-weight: bold;
@@ -73,6 +78,18 @@ body.infernal-mode .infernal-flames {
   animation: rise-from-below 1.8s ease-out forwards, flame-wobble .42s steps(2, end) 1.8s infinite;
 }
 
+.cursor-spark {
+  position: fixed;
+  z-index: 5;
+  width: 9px;
+  height: 9px;
+  pointer-events: none;
+  background: #ffcc00;
+  box-shadow: 0 0 0 2px #ff3300, 0 0 12px #ff0000;
+  transform: translate(-50%, -50%) rotate(45deg);
+  animation: spark-fade .8s ease-out forwards;
+}
+
 .infernal-notice,
 .loop-notice {
   position: fixed;
@@ -89,6 +106,39 @@ body.infernal-mode .infernal-flames {
   transform: translateY(-260%);
   transition: transform .35s ease;
   visibility: hidden;
+}
+
+.infernal-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(0, 0, 0, .74);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.infernal-modal.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.infernal-modal-box {
+  width: min(520px, 100%);
+  padding: 20px;
+  text-align: center;
+  color: #ffff00;
+  background: #240000;
+  border: 7px ridge #ff3300;
+  box-shadow: 10px 10px 0 #000, 0 0 28px #ff0000;
+}
+
+.infernal-modal h2 {
+  color: #ff3300;
 }
 
 .infernal-notice {
@@ -190,7 +240,7 @@ body.infernal-mode .hero h1 {
 }
 
 body.infernal-mode .promise::after {
-  content: " Also, It Has Been Talking To Something Downstairs.";
+  content: "";
   color: #ff9999;
 }
 
@@ -686,6 +736,18 @@ summary {
   border-top: 8px ridge #ddd;
 }
 
+.infernal-footer-warning {
+  display: none;
+  grid-column: 1 / -1;
+  color: #ff0000;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body.infernal-mode .infernal-footer-warning {
+  display: block;
+}
+
 body.loop-mode .site-footer::after {
   content: "You have reached the end. Unfortunately the end has rejected your paperwork.";
   display: block;
@@ -716,6 +778,18 @@ body.loop-mode .site-footer::after {
   to {
     filter: hue-rotate(-18deg) saturate(1.8);
     transform: translateY(8px);
+  }
+}
+
+@keyframes spark-fade {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(-50%, -140%) rotate(45deg) scale(.2);
   }
 }
 

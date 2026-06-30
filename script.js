@@ -19,6 +19,10 @@ const ramReading = document.querySelector("#ram-reading");
 const fanReading = document.querySelector("#fan-reading");
 const loopEscape = document.querySelector("#loop-escape");
 const loopNotice = document.querySelector(".loop-notice");
+const favicon = document.querySelector("#favicon");
+const infernalModal = document.querySelector(".infernal-modal");
+const infernalModalClose = document.querySelector("#infernal-modal-close");
+const corruptedTextElements = document.querySelectorAll("[data-infernal-text]");
 
 const burnMessages = [
   "Allocating imaginary incense cache...",
@@ -35,13 +39,25 @@ const burnMessages = [
   "Compressing regret into a blessed temporary file..."
 ];
 
+const infernalMessages = [
+  "Opening basement USB port...",
+  "Checking for suspiciously warm downloads...",
+  "Misaligning Power, CPU, RAM, Wi-Fi, Screen, Battery, and Ports...",
+  "Injecting negative browser toolbar residue...",
+  "Infusing low-frequency Heat Codes into your operating system...",
+  "Removing protective bubble. This seems fine."
+];
+
 const burnInTicks = 36;
 const burnInDelay = 340;
+const infernalFavicon = "assets/favicon-infernal.png";
 
 let audioContext;
 let scrollClickCount = 0;
 let lastScrollTime = 0;
 let loopMode = false;
+let infernalMode = false;
+let lastSparkTime = 0;
 
 const konamiCode = [
   "ArrowUp",
@@ -65,20 +81,24 @@ function setVisitorCounter() {
 }
 
 function runCleansing() {
+  const activeMessages = infernalMode ? infernalMessages : messages;
+
   button.disabled = true;
   progressBar.style.width = "0%";
 
-  messages.forEach((message, index) => {
+  activeMessages.forEach((message, index) => {
     window.setTimeout(() => {
       statusText.textContent = message;
-      progressBar.style.width = `${Math.round(((index + 1) / messages.length) * 100)}%`;
+      progressBar.style.width = `${Math.round(((index + 1) / activeMessages.length) * 100)}%`;
     }, index * 850);
   });
 
   window.setTimeout(() => {
-    statusText.textContent = "Cleansing complete. Your laptop is now vibrating at 56k enlightenment.";
+    statusText.textContent = infernalMode
+      ? "Uncleaning complete. Your laptop is now humming in questionable warmth."
+      : "Cleansing complete. Your laptop is now vibrating at 56k enlightenment.";
     button.disabled = false;
-  }, messages.length * 850 + 250);
+  }, activeMessages.length * 850 + 250);
 }
 
 function playBlessedBleep(tick) {
@@ -105,6 +125,32 @@ function playBlessedBleep(tick) {
   gain.connect(audioContext.destination);
   oscillator.start(now);
   oscillator.stop(now + 0.12);
+}
+
+function playInfernalSting() {
+  [0, 0.09, 0.18, 0.34].forEach((delay, index) => {
+    window.setTimeout(() => playBlessedBleep(index + 9), delay * 1000);
+  });
+}
+
+function corruptCopy() {
+  corruptedTextElements.forEach((element) => {
+    if (!element.dataset.originalText) {
+      element.dataset.originalText = element.textContent;
+    }
+
+    element.textContent = element.dataset.infernalText;
+  });
+}
+
+function showInfernalModal() {
+  infernalModal.classList.add("is-visible");
+  infernalModal.setAttribute("aria-hidden", "false");
+}
+
+function hideInfernalModal() {
+  infernalModal.classList.remove("is-visible");
+  infernalModal.setAttribute("aria-hidden", "true");
 }
 
 function runBurnIn() {
@@ -144,8 +190,29 @@ function runBurnIn() {
 }
 
 function enableInfernalMode() {
+  infernalMode = true;
   document.body.classList.add("infernal-mode");
+  favicon.setAttribute("href", infernalFavicon);
+  counter.textContent = "00666";
+  corruptCopy();
   burnLog.textContent = "INFERNAL SILICON MODE UNSEALED\n> Please cleanse responsibly.";
+  showInfernalModal();
+  playInfernalSting();
+}
+
+function createCursorSpark(event) {
+  if (!infernalMode || Date.now() - lastSparkTime < 45) {
+    return;
+  }
+
+  lastSparkTime = Date.now();
+
+  const spark = document.createElement("span");
+  spark.className = "cursor-spark";
+  spark.style.left = `${event.clientX}px`;
+  spark.style.top = `${event.clientY}px`;
+  document.body.append(spark);
+  window.setTimeout(() => spark.remove(), 850);
 }
 
 function enableLoopMode() {
@@ -207,13 +274,16 @@ setVisitorCounter();
 button.addEventListener("click", runCleansing);
 burnButton.addEventListener("click", runBurnIn);
 loopEscape.addEventListener("click", disableLoopMode);
+infernalModalClose.addEventListener("click", hideInfernalModal);
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     disableLoopMode();
+    hideInfernalModal();
     return;
   }
 
   handleKonami(event);
 });
 window.addEventListener("scroll", handleScroll, { passive: true });
+window.addEventListener("pointermove", createCursorSpark, { passive: true });
 document.addEventListener("click", handleDocumentClick);
