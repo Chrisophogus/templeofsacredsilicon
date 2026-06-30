@@ -99,7 +99,7 @@ function setVisitorCounter() {
 function hideLoadingScreen() {
   window.setTimeout(() => {
     loadingScreen.classList.add("is-hidden");
-  }, 700);
+  }, 1700);
 }
 
 function revealCertificate() {
