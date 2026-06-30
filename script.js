@@ -18,6 +18,7 @@ const cpuReading = document.querySelector("#cpu-reading");
 const ramReading = document.querySelector("#ram-reading");
 const fanReading = document.querySelector("#fan-reading");
 const loopEscape = document.querySelector("#loop-escape");
+const loopNotice = document.querySelector(".loop-notice");
 
 const burnMessages = [
   "Allocating imaginary incense cache...",
@@ -150,12 +151,14 @@ function enableInfernalMode() {
 function enableLoopMode() {
   loopMode = true;
   document.body.classList.add("loop-mode");
+  loopNotice.setAttribute("aria-hidden", "false");
 }
 
 function disableLoopMode() {
   loopMode = false;
   scrollClickCount = 0;
   document.body.classList.remove("loop-mode");
+  loopNotice.setAttribute("aria-hidden", "true");
 }
 
 function handleKonami(event) {

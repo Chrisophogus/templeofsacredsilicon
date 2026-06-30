@@ -84,8 +84,11 @@ body.infernal-mode .infernal-flames {
   background: #ffffcc;
   border: 5px ridge #ff0000;
   box-shadow: 6px 6px 0 #000;
-  transform: translateY(-140%);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-260%);
   transition: transform .35s ease;
+  visibility: hidden;
 }
 
 .infernal-notice {
@@ -107,7 +110,10 @@ body.infernal-mode .infernal-flames {
 
 body.infernal-mode .infernal-notice,
 body.loop-mode .loop-notice {
+  opacity: 1;
+  pointer-events: auto;
   transform: translateY(0);
+  visibility: visible;
 }
 
 #loop-escape {
