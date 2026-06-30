@@ -16,6 +16,7 @@ Create a small joke website that offers spiritual cleansing for a user's laptop,
 - **Fake resource abuse, not real resource abuse:** The joke can claim to consume enormous RAM/CPU, but the implementation must stay harmless, opt-in, and time-limited. Use fake counters, light DOM updates, and short user-triggered bleeps instead of loops, memory allocation, mining-like behaviour, or anything that would degrade a visitor's device.
 - **Longer fake burn-in, same light footprint:** The Chakra Burn-In should feel ceremonially excessive, but the extra duration should come from slower, capped UI updates rather than more work.
 - **Recoverable easter eggs:** Hidden modes can make the site feel cursed, but they should be reversible. Konami mode can restyle the page with an infernal joke layer, corrupted copy, a modal, cursor sparks, and a temporary favicon swap; the scroll-loop trick can trap the user in a playful loop but must show an escape button and support `Escape`.
+- **Original parody pop-in:** Use original CSS pixel art and original bleeps for the "CLEANSY!" gag rather than copying any copyrighted game asset or audio.
 
 ## Implementation
 
@@ -26,3 +27,4 @@ Create a small joke website that offers spiritual cleansing for a user's laptop,
 5. Add the desktop-computer surcharge joke and a fake enhanced service panel that implies suspicious behaviour without implementing any of it.
 6. Add a fake "High Intensity Chakra Burn-In" that simulates ludicrous CPU/RAM usage with safe capped animation.
 7. Add two easter eggs: Konami code unlocks an infernal alternative skin with corrupted copy and ritual behaviour, and five clicks while scrolling starts a reversible cursed scroll loop.
+8. Add an original low-res "CLEANSY!" pop-in after the Chakra Burn-In, with an infernal "ROASTY!" variant.

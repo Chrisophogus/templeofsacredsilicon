@@ -23,6 +23,8 @@ const favicon = document.querySelector("#favicon");
 const infernalModal = document.querySelector(".infernal-modal");
 const infernalModalClose = document.querySelector("#infernal-modal-close");
 const corruptedTextElements = document.querySelectorAll("[data-infernal-text]");
+const cleansyPop = document.querySelector(".cleansy-pop");
+const cleansyCaption = document.querySelector("#cleansy-caption");
 
 const burnMessages = [
   "Allocating imaginary incense cache...",
@@ -133,6 +135,12 @@ function playInfernalSting() {
   });
 }
 
+function playCleansySting() {
+  [0, 0.08, 0.16].forEach((delay, index) => {
+    window.setTimeout(() => playBlessedBleep(index + (infernalMode ? 12 : 3)), delay * 1000);
+  });
+}
+
 function corruptCopy() {
   corruptedTextElements.forEach((element) => {
     if (!element.dataset.originalText) {
@@ -151,6 +159,20 @@ function showInfernalModal() {
 function hideInfernalModal() {
   infernalModal.classList.remove("is-visible");
   infernalModal.setAttribute("aria-hidden", "true");
+}
+
+function showCleansyPop() {
+  cleansyCaption.textContent = infernalMode ? "ROASTY!" : "CLEANSY!";
+  cleansyPop.classList.remove("is-visible");
+  cleansyPop.setAttribute("aria-hidden", "false");
+  void cleansyPop.offsetWidth;
+  cleansyPop.classList.add("is-visible");
+  playCleansySting();
+
+  window.setTimeout(() => {
+    cleansyPop.classList.remove("is-visible");
+    cleansyPop.setAttribute("aria-hidden", "true");
+  }, 2100);
 }
 
 function runBurnIn() {
@@ -185,6 +207,7 @@ function runBurnIn() {
       fanReading.textContent = "purring";
       burnLog.textContent = `${logLines.join("\n")}\n> Burn-in complete. No actual resources were harmed.`;
       burnButton.disabled = false;
+      showCleansyPop();
     }
   }, burnInDelay);
 }
