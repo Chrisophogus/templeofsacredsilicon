@@ -21,6 +21,7 @@ Create a small joke website that offers spiritual cleansing for a user's laptop,
 - **Separate static "new site" parody:** Put the modern-web satire in `/new/` so the classic homepage remains untouched in tone, while the new page can parody hostile modern design with popups, vague AI copy, cookie theatre, layout mistakes, and overbearing widgets. Keep it dependency-free and reversible.
 - **Duplicated "new new" entry points:** Let `/new-new/` and `/next/` load the same post-website satire. Duplicating the small HTML shell is less elegant than routing, but it keeps hosting static, avoids Netlify-specific redirects, and is easiest to maintain on any free host. Shared CSS and JavaScript keep the behaviour in one place.
 - **Pristine static 404:** Add a root `404.html` for Netlify and other static hosts. Use a dedicated `404.css` rather than the chaotic shared stylesheet so the error page can be deliberately immaculate, dependency-free, and easy to maintain.
+- **Netlify contact form with client-side redaction:** Use plain Netlify Forms for the real email path because it stays free-hostable and requires no backend. Let visitors type into suspicious joke fields, but do not give those fields `name` attributes; before submit, JavaScript only sends redacted status fields so sensitive values are not transmitted.
 
 ## Implementation
 
@@ -36,3 +37,4 @@ Create a small joke website that offers spiritual cleansing for a user's laptop,
 10. Add a top-level "NEW SITE" link and build `/new/` as a deliberately poor parody of modern web design: intrusive modals, cookie prompts, broken cards, fake SaaS copy, chat widgets, and bad CSS choices, all without external services or real tracking.
 11. Add `/new-new/` and `/next/` as the next redesign layer, linked only from `/new/`: an AI-native post-website app shell with excessive but safe animation, meaningless metrics, command palette theatre, onboarding loops, fake privacy toggles, and buzzword-heavy product copy.
 12. Add a calm, perfectly plain `404.html` with dedicated CSS, no JavaScript, no animation, and no hidden jokes beyond the contrast of it being the only flawlessly designed page.
+13. Add first-site Apple Mac/Eden detection and a Netlify "Karmic Pre-Screening" contact form. Submit only ordinary contact fields plus redaction notices for risky joke answers, with a static thank-you page.

@@ -35,6 +35,9 @@ const corruptedTextElements = document.querySelectorAll("[data-infernal-text]");
 const cleansyPop = document.querySelector(".cleansy-pop");
 const cleansyCaption = document.querySelector("#cleansy-caption");
 const chaosOfferings = document.querySelectorAll("[data-chaos]");
+const macEdenWarning = document.querySelector("#mac-eden-warning");
+const karmicForm = document.querySelector(".karmic-form");
+const redactionStatus = document.querySelector("#redaction-status");
 
 const burnMessages = [
   "Allocating imaginary incense cache...",
@@ -349,9 +352,59 @@ function handleDocumentClick() {
   }
 }
 
+function detectAppleMac() {
+  if (!macEdenWarning) {
+    return;
+  }
+
+  const userAgentPlatform = navigator.userAgentData ? navigator.userAgentData.platform : "";
+  const platform = userAgentPlatform || navigator.platform || "";
+  const userAgent = navigator.userAgent || "";
+  const isAppleMac = /mac/i.test(platform) || /Macintosh|Mac OS X/.test(userAgent);
+
+  if (isAppleMac) {
+    document.body.classList.add("apple-eden-mode");
+    macEdenWarning.hidden = false;
+  }
+}
+
+function redactKarmicPreScreening() {
+  const fields = karmicForm.querySelectorAll("[data-redact-field]");
+  const redactedTargets = new Set();
+
+  fields.forEach((field) => {
+    const targetName = field.dataset.redactField;
+    const hasValue = field.type === "checkbox" ? field.checked : field.value.trim() !== "";
+
+    if (!targetName || !hasValue) {
+      return;
+    }
+
+    const hiddenField = karmicForm.elements[targetName];
+
+    if (hiddenField) {
+      hiddenField.value = "REDACTED BY THE TEMPLE BEFORE TRANSMISSION";
+      redactedTargets.add(targetName);
+    }
+
+    if (field.type !== "checkbox") {
+      field.value = "";
+      field.placeholder = "REDACTED BEFORE EMAIL";
+    }
+  });
+
+  if (redactionStatus) {
+    const redactionCount = redactedTargets.size;
+    redactionStatus.textContent = redactionCount > 0
+      ? `${redactionCount} cursed pre-screening answer${redactionCount === 1 ? "" : "s"} spiritually shredded before email.`
+      : "No cursed pre-screening answers needed shredding.";
+  }
+}
+
 setVisitorCounter();
 hideLoadingScreen();
 activateBasementHash();
+detectAppleMac();
 button.addEventListener("click", runCleansing);
 printCertificate.addEventListener("click", () => window.print());
 burnButton.addEventListener("click", runBurnIn);
@@ -391,3 +444,6 @@ document.addEventListener("contextmenu", (event) => {
   showCurseToast();
 });
 document.addEventListener("click", handleDocumentClick);
+if (karmicForm) {
+  karmicForm.addEventListener("submit", redactKarmicPreScreening);
+}
