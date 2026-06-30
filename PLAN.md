@@ -20,6 +20,7 @@ Create a small joke website that offers spiritual cleansing for a user's laptop,
 - **More old-web clutter, still static:** Extra jokes should be plain HTML/CSS/JS: fake badges, fake webring, fake guestbook, fake diagnostic table, printable certificate, right-click curse, and a hidden `/secrets/` page. Avoid services, forms, databases, dependencies, or anything that affects hosting simplicity.
 - **Separate static "new site" parody:** Put the modern-web satire in `/new/` so the classic homepage remains untouched in tone, while the new page can parody hostile modern design with popups, vague AI copy, cookie theatre, layout mistakes, and overbearing widgets. Keep it dependency-free and reversible.
 - **Duplicated "new new" entry points:** Let `/new-new/` and `/next/` load the same post-website satire. Duplicating the small HTML shell is less elegant than routing, but it keeps hosting static, avoids Netlify-specific redirects, and is easiest to maintain on any free host. Shared CSS and JavaScript keep the behaviour in one place.
+- **Pristine static 404:** Add a root `404.html` for Netlify and other static hosts. Use a dedicated `404.css` rather than the chaotic shared stylesheet so the error page can be deliberately immaculate, dependency-free, and easy to maintain.
 
 ## Implementation
 
@@ -34,3 +35,4 @@ Create a small joke website that offers spiritual cleansing for a user's laptop,
 9. Add retro supporting jokes: compatibility badges, awards, a diagnostics table, fake webring, guestbook modal, cleansing certificate, right-click curse, loading overlay, offering hover chaos, `#basement`, and `/secrets/`.
 10. Add a top-level "NEW SITE" link and build `/new/` as a deliberately poor parody of modern web design: intrusive modals, cookie prompts, broken cards, fake SaaS copy, chat widgets, and bad CSS choices, all without external services or real tracking.
 11. Add `/new-new/` and `/next/` as the next redesign layer, linked only from `/new/`: an AI-native post-website app shell with excessive but safe animation, meaningless metrics, command palette theatre, onboarding loops, fake privacy toggles, and buzzword-heavy product copy.
+12. Add a calm, perfectly plain `404.html` with dedicated CSS, no JavaScript, no animation, and no hidden jokes beyond the contrast of it being the only flawlessly designed page.
