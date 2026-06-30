@@ -26,6 +26,7 @@ Create a small joke website that offers spiritual cleansing for a user's laptop,
 - **Hidden ASCII reliquary:** Hide a deliberately enormous ASCII drawing inside `index.html` as a comment. This bloats the source for the joke, but keeps rendering unchanged, requires no runtime work, and remains easy to delete if the bit ever stops being funny.
 - **Secrets page as static index:** Keep `/secrets/` as a simple hand-maintained static map rather than generating it from code. That is less clever, but easiest to host and maintain for a tiny joke site.
 - **Duplicated third-version legal copy:** Add footer copy to both `/new-new/` and `/next/` manually. This repeats HTML, but avoids routing or templating and keeps the static deployment simple.
+- **Generated absurd terms:** Add `/terms/` as a static page with a tiny JavaScript clause generator rather than hand-writing thousands of pages. This keeps the repo maintainable while still producing an astoundingly long, printable, scroll-heavy terms document.
 
 ## Implementation
 
@@ -46,3 +47,4 @@ Create a small joke website that offers spiritual cleansing for a user's laptop,
 15. Add an oversized hidden ASCII mural to `index.html` so at least half of the document source is a ludicrous non-rendered drawing.
 16. Update `/secrets/` whenever new public, hidden, or semi-hidden jokes are added so the archival map remains comprehensive.
 17. Add the AI/IP caution footer to both third-version entry points: `/new-new/` and `/next/`.
+18. Add `/terms/`, linked from the original footer, generating 2,003 pages of parody terms and conditions from small reusable clause arrays.

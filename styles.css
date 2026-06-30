@@ -1368,6 +1368,11 @@ summary {
   opacity: .24;
 }
 
+.terms-link {
+  grid-column: 1 / -1;
+  font-size: 12px;
+}
+
 body.infernal-mode .infernal-footer-warning {
   display: block;
 }
@@ -1379,6 +1384,108 @@ body.loop-mode .site-footer::after {
   margin-top: 12px;
   color: #ff0000;
   font-weight: bold;
+}
+
+body.terms-site {
+  color: #19160f;
+  font-family: Georgia, "Times New Roman", serif;
+  background:
+    linear-gradient(rgba(255,255,255,.72), rgba(255,255,255,.72)),
+    repeating-linear-gradient(0deg, #efe8d0 0 32px, #e4d7b8 32px 64px);
+}
+
+.terms-shell {
+  width: min(980px, calc(100% - 24px));
+  margin: 24px auto 80px;
+}
+
+.terms-cover,
+.terms-controls,
+.terms-page {
+  background: #fffdf4;
+  border: 1px solid #c9b98e;
+  box-shadow: 0 12px 38px rgba(50, 35, 12, .12);
+}
+
+.terms-cover {
+  padding: clamp(28px, 7vw, 72px);
+  text-align: center;
+}
+
+.terms-document-code {
+  color: #78643d;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.terms-cover h1 {
+  margin: 0 0 18px;
+  color: #19160f;
+  font-size: clamp(46px, 9vw, 96px);
+  line-height: .92;
+  text-transform: none;
+}
+
+.terms-cover p {
+  max-width: 700px;
+  margin: 14px auto 0;
+  font-size: 19px;
+}
+
+.terms-warning {
+  color: #7b1f1f;
+  font-weight: bold;
+}
+
+.terms-controls {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+  padding: 14px;
+}
+
+.terms-controls a {
+  color: #4f3510;
+}
+
+#terms-count {
+  margin-left: auto;
+  color: #6a5a3a;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.terms-pages {
+  display: grid;
+  gap: 18px;
+}
+
+.terms-page {
+  min-height: 92vh;
+  padding: clamp(28px, 6vw, 62px);
+  page-break-after: always;
+}
+
+.terms-page h2 {
+  color: #321f09;
+  font-size: clamp(28px, 4vw, 42px);
+  text-transform: none;
+}
+
+.terms-page p,
+.terms-page li {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.terms-page ol {
+  margin-top: 22px;
 }
 
 @keyframes rise-from-below {
