@@ -2130,6 +2130,27 @@ body.post-site {
   margin: 104px 18px 120px auto;
 }
 
+.post-legal {
+  position: relative;
+  z-index: 2;
+  width: min(1180px, calc(100% - 332px));
+  margin: -82px 18px 120px auto;
+  padding: 18px 22px;
+  color: rgba(255,255,255,.52);
+  font-size: 12px;
+  line-height: 1.5;
+  background: rgba(9, 13, 30, .48);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 22px;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+.post-legal p {
+  max-width: 780px;
+  margin: 0;
+}
+
 .post-hero,
 .post-dashboard article,
 .post-panels article,
@@ -2682,6 +2703,11 @@ body.post-site {
   .post-app {
     width: calc(100% - 24px);
     margin: 12px auto 100px;
+  }
+
+  .post-legal {
+    width: calc(100% - 24px);
+    margin: -72px auto 90px;
   }
 
   .post-hero {
